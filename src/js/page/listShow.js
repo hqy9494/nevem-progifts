@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
       super()
       this.state = {
         $page: $('#js-page'),
+        limit: 10,
+        skip: 0,
+        isFetch: false,
         alwayNum: 0,
         noNum: 0,
         sumNum: 847,
@@ -28,8 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
         $list: $('#js-list')
       };
       this.init()
-    }
 
+      this.addMore(this.fetchList.bind(this))
+    }
     init() {
       this.load()
     }
@@ -62,11 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         this.state.$data1.append(fragment)
         
         // console.log(this.state.$data1, 'this.state.$data1')
-        // this.state.$data1.animate({
-        //   top: '50px',
-        //   color: '#abcdef',
-        //   rotateZ: '45deg', translate3d: '0,10px,0'
-        // }, 500, 'ease-out')
+        
         
         // console.log(this.state.$data1.height(), 'this.state.$data1')
       })
@@ -126,26 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
       })
 
-      this.fetchList().then(res => {
-        this.state.list = res
-        if (!res) return 
-
-        let fragment = this.createListFragment(res, (v) => {
-          return v && `
-            <div class="listShow-user">
-              <div class="listShow-left">
-                <img src=${v.user && v.user.avatar || 'assets/img/avatar.png'} alt="img">
-              </div>
-              <div class="listShow-right">
-                <div class="listShow-right-name">${v.user && v.user.avatar && v.user.avatar.nickname || '中奖用户'}</div>
-                <div class="listShow-right-content">${v.titleRaw || ''}</div>
-                ${v.images ? `<div class="listShow-right-img"><img src="${v.images && v.images[0]}" alt="img"></div>` : ''}
-              </div>
-            </div>
-          `
-        })
-        this.state.$list.append(fragment)
-      })
+      this.fetchList()
     }
     ready() {
       
@@ -193,16 +174,45 @@ document.addEventListener('DOMContentLoaded', function () {
       })
     }
     fetchList() {
+      this.state.isFetch = true
+
       return this.fetch({
         method: 'get',
         url: `${this.baseUriApi}/posts`,
         params: {
           filter: {
-            where: {
-              type: 2
-            }
+            type: 2,
+            limit: 10,
+            skip: this.state.skip
           }
-        }
+        },
+      }).then(res => {
+        console.log(this.state.list, res, 'data')
+        const data = [...this.state.list, ...res]
+        
+        this.state.$list.empty()
+        this.state.list = data
+
+        if (!data) return 
+
+        let fragment = this.createListFragment(data, (v) => {
+          return v && `
+            <div class="listShow-user">
+              <div class="listShow-left">
+                <img src=${v.user && v.user.avatar || 'assets/img/avatar.png'} alt="img">
+              </div>
+              <div class="listShow-right">
+                <div class="listShow-right-name">${v.user && v.user.avatar && v.user.avatar.nickname || '中奖用户'}</div>
+                <div class="listShow-right-content">${v.titleRaw || ''}</div>
+                ${v.images ? `<div class="listShow-right-img"><img src="${v.images && v.images[0]}" alt="img"></div>` : ''}
+              </div>
+            </div>
+          `
+        })
+        this.state.$list.append(fragment)
+        
+        this.state.skip = this.state.skip + this.state.limit
+        this.state.isFetch = false
       })
     }
     addMore(cb) {
@@ -210,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       document.addEventListener("scroll", e => {
           let lh = this.state.$page.height();
-          if (e.target.documentElement.scrollTop + wh > lh) cb && cb();
+          if (e.target.documentElement.scrollTop + wh > lh && !this.state.isFetch) cb && cb();
       });
     }
 
