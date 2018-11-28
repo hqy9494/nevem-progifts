@@ -1,0 +1,200 @@
+.listShow-scroll-wrap{
+  position: relative;
+  overflow: hidden;
+  .listShow-scroll{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .listShow-scroll-item-wrap{
+    height: pxToVw(70);
+    padding: pxToVw(4) 0;
+    box-sizing: border-box;
+  }
+  .listShow-scroll-item{
+    display: flex;
+    height: pxToVw(58);
+    text-align: center;
+    align-items: center;
+    padding: 0 pxToVw(20);
+    box-sizing: border-box;
+    img{
+      width: pxToVw(44);
+      height: pxToVw(39);
+    }
+    span{
+      padding: 0 pxToVw(10);
+    }
+    .listShow-scroll-item-font{
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.listShow-page{
+  min-height: 100%;
+  .listShow-title-wrap{
+    position: relative;
+    > img{
+      display: block;
+      width: 100%;
+    }
+  }
+  .listShow-title{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    > img{
+      display: block;
+      width: 100%;
+    }
+    .listShow-title-font{
+      width: 100%;
+      height: pxToVw(100);
+      color: #A36F4B;
+      position: absolute;
+      top: pxToVw(200);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      .listShow-title-font1{
+        font-size: pxToVw(40);
+        letter-spacing: 6px;
+      }
+      .listShow-title-font2{
+        font-size: pxToVw(30);
+        > span{
+          background-color: #A36F4B;
+          color: #fff;
+          border-left: 6px solid #A36F4B;
+          border-right: 6px solid #A36F4B;
+        }
+      }
+    }
+    .listSHow-title-list{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: pxToVw(604);
+      height: pxToVw(170);
+      top: pxToVw(374);
+      font-size: pxToVw(20);
+      .listShow-scroll{
+        // animation: toTop 20s linear infinite;
+      }
+    }
+  }
+  
+  .listShow-real, .listShow-red, .listShow-coupon{
+    > img{
+      width: 100%;
+    }
+    .listShow-scroll-wrap{
+      width: 70%;
+      height: pxToVw(123);
+      position: absolute;
+      // top: pxToVw(720);
+      left: 10%;
+      font-size: pxToVw(20);
+      .listShow-scroll{
+        animation: toTop 20s linear infinite;
+      }
+    }
+    .listShow-scroll-item{
+      // background-color: #FDC2CD;
+      color: #fff;
+      border-radius: pxToVw(40);
+    }
+  }
+
+  .listShow-real {
+    .listShow-scroll-wrap{
+      top: pxToVw(720) !important;
+    }
+    .listShow-scroll-item{
+      background-color: #FDC2CD;
+    }
+  }
+
+  .listShow-red {
+    .listShow-scroll-wrap{
+      top: pxToVw(960) !important;
+    }
+    .listShow-scroll-item{
+      background-color: #F9BE8F;
+    }
+  }
+
+  .listShow-coupon {
+    .listShow-scroll-wrap{
+      top: pxToVw(1220) !important;
+    }
+    .listShow-scroll-item{
+      background-color: #B6C0D0;
+    }
+  }
+
+  .listShow-user-wrap{
+    background-color: #eee;
+  }
+  .listShow-user{
+    background-color: #fff;
+    padding: pxToVw(20);
+    display: flex;
+    margin-bottom: pxToVw(10);
+    .listShow-left{
+      width: pxToVw(60);
+      > img{
+        width: pxToVw(60);
+        height: pxToVw(60);
+        border-radius: pxToVw(40);
+      }
+    }
+    .listShow-right{
+      flex: 1;
+      margin-left: pxToVw(20);
+      overflow: hidden;
+      .listShow-right-name{
+        font-size: pxToVw(28);
+        margin-bottom: pxToVw(10);
+      }
+      .listShow-right-content{
+        // font-size: pxToVw(30);
+        margin-bottom: pxToVw(10);
+        img{
+          width: pxToVw(30);
+          height: pxToVw(30);
+        }
+      }
+      .listShow-right-img{
+        width: 100%;
+        overflow: hidden;
+        border-radius: pxToVw(30);
+        > img{
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @keyframes toTop {
+    from{
+      top: 0;
+      // transform: translateY(0);
+    }
+    to {
+      top: pxToVw(-1000);
+      // transform: translateY(calc(-100% + 28vw));
+    }
+  }
+}
+
+
+

@@ -1,0 +1,77 @@
+body{
+  min-height: 100%;
+}
+.list-page{
+  min-height: 100%;
+  background-color: #fbeeee;
+  .list-top{
+    width: 100%;
+    display: block;
+  }
+
+  .list-list{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fbeeee;
+    padding: pxToVw(10);
+    .list-itemWrap{
+      width: 50%;
+      background-color: #fbeeee;
+      padding: pxToVw(10);
+      box-sizing: border-box;
+    }
+    .list-item{
+      height: pxToVw(540);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      box-sizing: border-box;
+      border-radius: pxToVw(20);
+      color: #484848;
+      .list-imgWrap{
+        height: pxToVw(300);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      img{
+        width: 80%;
+      }
+      .list-name{
+        height: pxToVw(100);
+        padding: 0 pxToVw(10);
+        font-size: pxToVw(30);
+        overflow: hidden;
+        text-align: center;
+      }
+      .list-money{
+        padding: 0 pxToVw(10);
+        font-size: pxToVw(26);
+        margin-bottom: pxToVw(14);
+        overflow: hidden;
+      }
+      .list-btn{
+        padding: pxToVw(14) pxToVw(30);
+        border-radius: pxToVw(40);
+        text-align: center;
+        color: #000;
+        font-size: pxToVw(24);
+        background-color: #FCC430;
+      }
+    }
+  }
+}
+
+.NoticeBar-wrap{
+  height: pxToVw(45);
+  background-color: #fbeeee;
+  overflow: hidden;
+  .NoticeBar{
+    position: relative;
+    color: red;
+    white-space: nowrap;
+    display: flex;
+  }
+}
