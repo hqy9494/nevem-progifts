@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
   .listShow-scroll{
+    width: 90%;
     position: absolute;
     top: 0;
     left: 0;
@@ -12,18 +13,32 @@
     box-sizing: border-box;
   }
   .listShow-scroll-item{
+    width: 100%;
     display: flex;
     height: pxToVw(58);
-    text-align: center;
+    text-align: left;
     align-items: center;
-    padding: 0 pxToVw(20);
+    padding-left: pxToVw(20);
     box-sizing: border-box;
     img{
       width: pxToVw(44);
       height: pxToVw(39);
+      margin-right: pxToVw(10);
     }
-    span{
-      padding: 0 pxToVw(10);
+    span:first-child{
+      width: pxToVw(100);
+    }
+    span:nth-child(2){
+      width: pxToVw(200);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    span:nth-child(3){
+      width: pxToVw(120);
+    }
+    span:nth-child(4){
+      width: pxToVw(200);
     }
     .listShow-scroll-item-font{
       overflow: hidden;
@@ -36,17 +51,21 @@
 .listShow-page{
   min-height: 100%;
   .listShow-title-wrap{
+    // height: pxToVw(625);
     position: relative;
     > img{
       display: block;
       width: 100%;
     }
+    .listShow-scroll{
+      width: 100%;
+    }
   }
   .listShow-title{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // z-index: 1;
     background-color: #fff;
     > img{
       display: block;
@@ -84,21 +103,22 @@
       left: 50%;
       transform: translateX(-50%);
       width: pxToVw(604);
-      height: pxToVw(170);
-      top: pxToVw(374);
+      height: pxToVw(530);
+      top: pxToVw(334);
       font-size: pxToVw(20);
       .listShow-scroll{
-        animation: toTop 20s linear infinite;
+        animation: toTop 300s linear infinite;
       }
     }
   }
   
   .listShow-real, .listShow-red, .listShow-coupon{
     > img{
+      display: block;
       width: 100%;
     }
     .listShow-scroll-wrap{
-      width: 70%;
+      width: 90%;
       height: pxToVw(123);
       position: absolute;
       // top: pxToVw(720);
@@ -156,6 +176,7 @@
         width: pxToVw(60);
         height: pxToVw(60);
         border-radius: pxToVw(40);
+        display: block;
       }
     }
     .listShow-right{
@@ -170,6 +191,7 @@
         // font-size: pxToVw(30);
         margin-bottom: pxToVw(10);
         img{
+          display: block;
           width: pxToVw(30);
           height: pxToVw(30);
         }
@@ -191,7 +213,7 @@
       // transform: translateY(0);
     }
     to {
-      top: pxToVw(-980);
+      top: pxToVw(-21705);
       // transform: translateY(calc(-100% + 28vw));
     }
   }

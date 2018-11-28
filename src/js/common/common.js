@@ -1,6 +1,7 @@
 class parent {
   constructor(){
-    this.baseUri = 'https://test.lkd.yooyuu.com.cn'
+    // this.baseUri = 'https://test.lkd.yooyuu.com.cn'
+    this.baseUri = 'https://lkd.yooyuu.com.cn'
     this.baseUriApi = this.baseUri + '/api'
     this.windowUrl = window.location.href
     this.origin = window.location.origin
