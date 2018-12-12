@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // this.state.$list.empty()
         // this.state.list = data
 
-        if (!data) return 
+        if (!data) return
 
         let fragment = this.createListFragment(data, (v) => {
           return v && `
