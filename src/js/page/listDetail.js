@@ -4,15 +4,30 @@ document.addEventListener('DOMContentLoaded', function () {
       super()
       this.state = {
         data: [],
-        $img: $('#js-img')
+        $img: $('#js-img'),
+        $arrowTop: $('#js-scroll-top'),
       };
       this.init()
+      
     }
 
     init() {
       const params = this.params
 
       params && this.render([params.img])
+      
+      this.load()
+    }
+    
+    load(){
+    	this.ready()
+    }
+    
+    ready(){
+    	this.state.$arrowTop.on('tap', () => {
+        //滚动顶部
+        this.scrollTop();
+      })
     }
 
     createListFragment(arr){

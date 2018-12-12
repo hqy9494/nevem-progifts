@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // $data4: $('#js-data4'),
 
         list: [],
-        $list: $('#js-list')
+        $list: $('#js-list'),
+        $arrowTop: $('#js-scroll-top'),
       };
       this.init()
 
@@ -110,9 +111,14 @@ document.addEventListener('DOMContentLoaded', function () {
       // })
 
       this.fetchList()
+      
+      this.ready()
     }
     ready() {
-      
+      this.state.$arrowTop.on('tap', () => {
+        //滚动顶部
+        this.scrollTop();
+      })
     }
     awardType(v){
       if (v.awardType === 'material') return v.materialAward && v.materialAward.name

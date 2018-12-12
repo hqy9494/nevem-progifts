@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
       super()
       this.state = {
         data: [],
-        $list: $('#js-list')
+        $list: $('#js-list'),
+        $arrowTop: $('#js-scroll-top'),
       };
       this.init()
     }
@@ -27,6 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const detail = $(parent).data('detail')
 
         window.location.href = `./listDetail.html?img=${detail}`
+      })
+      
+      this.state.$arrowTop.on('tap', () => {
+        //滚动顶部
+        this.scrollTop();
       })
     }
     fetchData() {

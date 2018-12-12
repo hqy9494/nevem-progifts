@@ -44,6 +44,19 @@ class parent {
       }) 
     }).catch(err => alert(`错误信息: ${err}`))
   }
+  scrollTop(){
+  	//滚动顶部
+    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (currentScroll > 0) {
+       (function smoothscroll(){
+			    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+			    if (currentScroll > 0) {
+			         window.requestAnimationFrame(smoothscroll);
+			         window.scrollTo (0,currentScroll - (currentScroll/5));
+			    }
+			})()
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

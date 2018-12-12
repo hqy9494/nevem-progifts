@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function(){
         $list: $('#js-page'),
         arr: []
       }
-
+			
       // 初始化
       this.init()
     }
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
       this.render(this.state.arr)
     }
     ready(){
-      
+			
     }
     fetchData(){
       return this.fetch({

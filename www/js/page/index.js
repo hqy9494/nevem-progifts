@@ -1,1 +1,59 @@
-document.addEventListener("DOMContentLoaded",function(){new class extends parent{constructor(){super(),this.state={$list:$("#js-page"),arr:[]},this.init()}async init(){await this.load(),this.ready()}async load(){const t=await this.fetchData();this.state.arr=t.data,this.render(this.state.arr)}ready(){}fetchData(){return this.fetch({method:"get",url:`${this.baseUriApi}/topics`,params:{limit:10}})}createListFragment(t){let e=document.createDocumentFragment();return t.forEach(t=>{let a=`\n          <div>${t.title}</div>\n        `;e.appendChild($(a)[0])}),e}render(t){let e=this.createListFragment(t);this.state.$list.append(e)}}});
+document.addEventListener('DOMContentLoaded', function(){
+  class index extends parent{
+    constructor(){
+      super()
+      
+      this.state = {
+        $list: $('#js-page'),
+        arr: []
+      }
+			
+      // 初始化
+      this.init()
+    }
+    async init(){
+      // 加载前 - 用于请求数据
+      await this.load()
+
+      // 加载后 - 用于绑定事件
+      this.ready()
+    }
+    async load(){
+      const data = await this.fetchData()
+
+      this.state.arr = data.data
+      this.render(this.state.arr)
+    }
+    ready(){
+			
+    }
+    fetchData(){
+      return this.fetch({
+        method: 'get',
+        url: `${this.baseUriApi}/topics`,
+        params: {
+          limit: 10
+        }
+      })
+    }
+    createListFragment(arr){
+      let fragment = document.createDocumentFragment()
+      arr.forEach((v) => {
+        let html = `
+          <div>${v.title}</div>
+        `
+        fragment.appendChild($(html)[0])
+      })
+
+      return fragment
+    }
+    render(arr){
+      let fragment = this.createListFragment(arr)
+      this.state.$list.append(fragment)
+    }
+  }
+
+  new index()
+})
+
+//# sourceMappingURL=index.js.map
