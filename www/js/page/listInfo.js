@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function(){
     createListFragment(arr){
       let fragment = document.createDocumentFragment();
       if(arr[0].content){
-      	console.log(arr[0].content)
+//    	console.log(arr[0].content)
       	let html = `<div class="urle-content">${arr[0].content}</div>`
       	fragment.appendChild($(html)[0])
       }
