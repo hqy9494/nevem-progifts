@@ -41,7 +41,7 @@ class parent {
     return new Promise((resolve, reject) => {
       $.getJSON(url, function (data){
         resolve(data)
-      }) 
+      })
     }).catch(err => alert(`错误信息: ${err}`))
   }
   scrollTop(){
@@ -61,7 +61,7 @@ class parent {
 
 document.addEventListener('DOMContentLoaded', function() {
   console.log('ready')
-  
+
   window.onscroll= function(){
       //变量t是滚动条滚动时，距离顶部的距离
       var t = document.documentElement.scrollTop||document.body.scrollTop;
@@ -73,5 +73,5 @@ document.addEventListener('DOMContentLoaded', function() {
           scrollup.style.display="none";
       }
   }
-  
+
 })
