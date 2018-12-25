@@ -1,0 +1,51 @@
+.showPrize-expected{
+  width: 100%;
+  height: pxToVw(460);
+  position: absolute;
+  left: 0;
+  top: pxToVw(394);
+  color: #F4E3CC;
+  .showPrize-expected-num{
+    width: pxToVw(130);
+    line-height: pxToVw(100);
+    text-align: center;
+    position: absolute;
+    top: pxToVw(30);
+    right: pxToVw(160);
+    font-size: pxToVw(60);
+  }
+  .showPrize-expected-content{
+    width: pxToVw(610);
+    height: pxToVw(306);
+    position: absolute;
+    bottom: pxToVw(26);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-size: pxToVw(30);
+    .showPrize-expected-prize1{
+      width: pxToVw(168);
+      height: pxToVw(210);
+      display: flex;
+      flex-direction: column;
+    }
+    .showPrize-expected-prize2{
+      width: pxToVw(151);
+      height: pxToVw(230);
+    }
+    .showPrize-expected-prize3{
+      width: pxToVw(168);
+      height: pxToVw(180);
+    }
+    .showPrize-expected-item-name{
+      font-size: pxToVw(33);
+      color: #AB6944;
+    }
+    .showPrize-expected-item-num{
+      font-size: pxToVw(28);
+      color: #EF3E53;
+    }
+  }
+}

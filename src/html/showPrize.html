@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include("common/header.html")
+
+<body style="background-color: #fff">
+<!-- page -->
+<div class="listShow-page" id="js-page">
+  <!-- 头部 -->
+  <div class="listShow-title-wrap">
+    <div class="listShow-title">
+      <img src="assets/img/showTop.png" alt="img">
+      <div class="showPrize-expected">
+        <div class="showPrize-expected-num">1234</div>
+        <div class="showPrize-expected-content">
+          <div class="showPrize-expected-prize1">
+            <div class="showPrize-expected-item">
+              <div class="showPrize-expected-item-name">B&O音响</div>
+              <div class="showPrize-expected-item-num">总共：10个</div>
+            </div>
+            <div class="showPrize-expected-item">
+              <div class="showPrize-expected-item-name">B&O音响</div>
+              <div class="showPrize-expected-item-num">总共：10个</div>
+            </div>
+          </div>
+          <div class="showPrize-expected-prize2">
+            <div class="showPrize-expected-item">
+              <img src="assets/img/phone" alt="img">
+              <div class="showPrize-expected-item-name">B&O音响</div>
+              <div class="showPrize-expected-item-num">总共：10个</div>
+            </div>
+          </div>
+          <div class="showPrize-expected-prize3">
+            <div class="showPrize-expected-item">
+              <div class="showPrize-expected-item-name">B&O音响</div>
+              <div class="showPrize-expected-item-num">总共：10个</div>
+            </div>
+            <div class="showPrize-expected-item">
+              <div class="showPrize-expected-item-name">B&O音响</div>
+              <div class="showPrize-expected-item-num">总共：10个</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="listShow-user-wrap" id="js-list">
+  </div>
+</div>
+<a class="scroll-top" id="js-scroll-top" style="display: none;position: fixed;bottom: 8%;right: 4%;width: 40px;height: 40px;">
+  <img src="assets/img/scroll-top.png" alt="返回顶部" style="display: inline-block;width: 100%;height: 100%;" />
+</a>
+</body>
+@@include("common/script.html")
+<script src="js/vender/moment.min.js"></script>
+
+<!-- <script src="js/vender/fx.js" defer="async"></script> -->
+<script src="js/page/showPrize.js?rev=@@hash"></script>
+</html>
