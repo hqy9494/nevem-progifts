@@ -52,9 +52,23 @@ document.addEventListener('DOMContentLoaded', function () {
         url: `${this.baseUriApi}/classAwardRecords/getPredictClassAwards`,
       })
     }
+    sum(v){
+      if (!v.awards) return
+
+      let one = v.awards[0] && v.awards[0].childAwards
+      let oneNum = one[0].count
+
+      let two = v.awards[1] && v.awards[1].childAwards
+      let twoNum = two[0].count + two[1].count
+
+      let three = v.awards[2] && v.awards[2].childAwards
+      let threeNum = three[0].count + three[1].count
+
+      return oneNum + twoNum + threeNum
+    }
     renderPrize(dom, v){
       let fragment = document.createDocumentFragment()
-      fragment.appendChild($(`<div class="showPrize-expected-num">${v ? v.allCount : 0}</div>`)[0]);
+      fragment.appendChild($(`<div class="showPrize-expected-num">${v ? this.sum(v) : 0}</div>`)[0]);
       fragment.appendChild($(`
           <div class="showPrize-expected-content">
             <div class="showPrize-expected-prize1">
