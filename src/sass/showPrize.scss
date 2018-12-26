@@ -1,0 +1,93 @@
+.showPrize-expected{
+  width: 100%;
+  height: pxToVw(460);
+  position: absolute;
+  left: 0;
+  top: pxToVw(394);
+  color: #F4E3CC;
+  .showPrize-expected-num{
+    width: pxToVw(130);
+    line-height: pxToVw(100);
+    text-align: center;
+    position: absolute;
+    top: pxToVw(30);
+    right: pxToVw(160);
+    font-size: pxToVw(60);
+  }
+  .showPrize-expected-content{
+    width: pxToVw(610);
+    height: pxToVw(306);
+    position: absolute;
+    bottom: pxToVw(26);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-size: pxToVw(30);
+    padding-right: pxToVw(10);
+    box-sizing: border-box;
+    .showPrize-expected-prize1, .showPrize-expected-prize2, .showPrize-expected-prize3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .showPrize-expected-prize1{
+      width: pxToVw(168);
+      height: pxToVw(180);
+    }
+    .showPrize-expected-prize2{
+      width: pxToVw(151);
+      height: pxToVw(230);
+      margin-left: pxToVw(10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .showPrize-expected-item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+          width: pxToVw(49);
+          height: pxToVw(95);
+        }
+      }
+    }
+    .showPrize-expected-prize3{
+      width: pxToVw(168);
+      height: pxToVw(180);
+    }
+    .showPrize-expected-item-name{
+      text-align: center;
+      font-size: pxToVw(24);
+      color: #AB6944;
+    }
+    .showPrize-expected-item-num{
+      text-align: center;
+      font-size: pxToVw(20);
+      color: #EF3E53;
+    }
+  }
+}
+
+.showPrize-expected1{
+  top: pxToVw(886);
+  height: pxToVw(370);
+  .showPrize-expected-num{
+    top: pxToVw(20);
+  }
+  .showPrize-expected-content{
+    height: pxToVw(276);
+    bottom: 0;
+    .showPrize-expected-prize1{
+      height: pxToVw(170);
+    }
+    .showPrize-expected-prize2{
+      height: pxToVw(180);
+    }
+    .showPrize-expected-prize3{
+      height: pxToVw(150);
+    }
+  }
+}
