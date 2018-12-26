@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
         list: [],
         $list: $('#js-list'),
         $arrowTop: $('#js-scroll-top'),
+
+        $prize: $('#js-prize'),
+        $prize2: $('#js-prize2')
       };
       this.init()
 
@@ -21,6 +24,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     load() {
       this.fetchList()
+      this.getPredictClassAwards().then(v => {
+        this.renderPrize(this.state.$prize, v)
+      })
+
+      this.getTodayClassAwards().then(v => {
+        this.renderPrize(this.state.$prize2, v)
+      })
+
       this.ready()
     }
     ready() {
@@ -28,6 +39,66 @@ document.addEventListener('DOMContentLoaded', function () {
         //滚动顶部
         this.scrollTop();
       })
+    }
+    getTodayClassAwards(){
+      return this.fetch({
+        method: 'get',
+        url: `${this.baseUriApi}/classAwardRecords/getTodayClassAwards`,
+      })
+    }
+    getPredictClassAwards(){
+      return this.fetch({
+        method: 'get',
+        url: `${this.baseUriApi}/classAwardRecords/getPredictClassAwards`,
+      })
+    }
+    renderPrize(dom, v){
+      let fragment = document.createDocumentFragment()
+      fragment.appendChild($(`<div class="showPrize-expected-num">${v ? v.allCount : 0}</div>`)[0]);
+      fragment.appendChild($(`
+          <div class="showPrize-expected-content">
+            <div class="showPrize-expected-prize1">
+              ${
+                v && v.awards && v.awards[1] && v.awards[1].childAwards ? `
+                  <div class="showPrize-expected-item">
+                    <div class="showPrize-expected-item-name">${v.awards[1].childAwards[0] ? v.awards[1].childAwards[0].name : ''}</div>
+                    <div class="showPrize-expected-item-num">总共：${v.awards[1].childAwards[0] ? v.awards[1].childAwards[0].count : ''}个</div>
+                  </div>
+                  <div class="showPrize-expected-item">
+                    <div class="showPrize-expected-item-name">${v.awards[1].childAwards[1] ? v.awards[1].childAwards[1].name : ''}</div>
+                    <div class="showPrize-expected-item-num">总共：${v.awards[1].childAwards[1] ? v.awards[1].childAwards[1].count : ''}个</div>
+                  </div>
+                ` : ''
+              }
+            </div>
+            <div class="showPrize-expected-prize2">
+              <div class="showPrize-expected-item">
+                ${
+                  v && v.awards && v.awards[0] && v.awards[0].childAwards ? `
+                    <img src=${v.awards[0].childAwards[0] ? v.awards[0].childAwards[0].picture : ''} alt="img">
+                    <div class="showPrize-expected-item-name">${v.awards[0].childAwards[0] ? v.awards[0].childAwards[0].name : ''}</div>
+                    <div class="showPrize-expected-item-num">总共：${v.awards[0].childAwards[0] ? v.awards[0].childAwards[0].count : ''}个</div>
+                  ` : ''
+                }
+              </div>
+            </div>
+            <div class="showPrize-expected-prize3">
+              ${
+                v && v.awards && v.awards[2] && v.awards[2].childAwards ? `
+                  <div class="showPrize-expected-item">
+                    <div class="showPrize-expected-item-name">${v.awards[2].childAwards[0] ? v.awards[2].childAwards[0].name : ''}</div>
+                    <div class="showPrize-expected-item-num">总共：${v.awards[2].childAwards[0] ? v.awards[2].childAwards[0].count : ''}个</div>
+                  </div>
+                  <div class="showPrize-expected-item">
+                    <div class="showPrize-expected-item-name">${v.awards[2].childAwards[1] ? v.awards[2].childAwards[1].name : ''}</div>
+                    <div class="showPrize-expected-item-num">总共：${v.awards[2].childAwards[1] ? v.awards[2].childAwards[1].count : ''}个</div>
+                  </div>
+                ` : ''
+              }
+            </div>
+          </div>
+        `)[0])
+      dom.append(fragment)
     }
     fetchList() {
       this.state.isFetch = true
