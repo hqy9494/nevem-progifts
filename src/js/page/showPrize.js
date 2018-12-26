@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
       };
       this.init()
 
-      // this.addMore(this.fetchList.bind(this))
+      this.addMore(this.fetchList.bind(this))
     }
     init() {
       this.load()
     }
     load() {
-      // this.fetchList()
+      this.fetchList()
       this.ready()
     }
     ready() {
