@@ -38,33 +38,35 @@ const options = {
   minifyCSS: true//压缩页面CSS
 }
 
+const buildName = 'www'
+
 const project = {
   concatjs: {
     main: ["src/js/common/zepto.js", "src/js/common/touch.js", "src/js/common/!(zepto|touch).js"],
-    build: "www/js"
+    build: buildName + "/js"
   },
   vender: {
-    main: "src/js/vender/**",
-    build: "www/js/vender",
+    main: "src/js/vender/*.js",
+    build: buildName + "/js/vender",
   },
   js: {
     main: "src/js/!(common|vender)/*.js",
-    build: "www/js",
+    build: buildName + "/js",
     watch: "src/js/**"
   },
   sass: {
     main: "src/main.scss",
-    build: "www",
+    build: buildName,
     watch: "src/sass/**"
   },
   html: {
     main: "src/html/*.html",
-    build: "www",
+    build: buildName,
     watch: "src/html/**"
   },
   assets: {
     main: "src/assets/**",
-    build: "www/assets"
+    build: buildName + "/assets"
   },
 }
 
@@ -85,9 +87,9 @@ gulp.task('concatjs:debug', function() {
 gulp.task('concatjs', function() {
   gulp.src(project.concatjs.main)
     .pipe(concat('common.js'))
-    // .pipe(babel({
-    //   presets: ['@babel/preset-es2015'],
-    // }))
+    .pipe(babel({
+      presets: ["@babel/preset-env"]
+    }))
     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     .pipe(minify())
     .pipe(gulp.dest(project.concatjs.build))
@@ -110,9 +112,9 @@ gulp.task('js:debug', function() {
 // 生产环境
 gulp.task('js', function() {
   gulp.src(project.js.main)
-    // .pipe(babel({
-    //   presets: ['@babel/preset-es2015'],
-    // }))
+    .pipe(babel({
+      presets: ["@babel/preset-env"]
+    }))
     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     .pipe(minify())
     .pipe(gulp.dest(project.js.build))
@@ -158,8 +160,8 @@ gulp.task('html', function() {
 
 // 删除
 gulp.task('delete', function() {
-  gulp.src('www', { read: false })
-   .pipe(rimraf())
+  gulp.src('dist', { read: false })
+    .pipe(rimraf())
 })
 
 // assets
@@ -177,11 +179,11 @@ gulp.task('build:debug', ['sass:debug', 'vender', 'concatjs:debug', 'js:debug', 
 gulp.task('build', ['sass', 'vender', 'concatjs', 'js', 'assets', 'html'])
 
 // 服务器
-gulp.task('serve', ['build:debug'], function() {
+gulp.task('serve', ['build'], function() {
   setTimeout(function(){
     browserSync.init({
       server: {
-        baseDir: 'www',
+        baseDir: buildName,
         index: './index.html'
       },
       port: program.port || 3000
@@ -193,5 +195,5 @@ gulp.task('serve', ['build:debug'], function() {
   gulp.watch(project.js.watch, ['build:debug'])
   gulp.watch(project.html.watch, ['build:debug'])
   gulp.watch(project.assets.main, ['build:debug'])
-  // gulp.watch(['www/**', 'www/*/**']).on('change', browserSync.reload)
+  // gulp.watch(['dist/**', 'dist/*/**']).on('change', browserSync.reload)
 })
