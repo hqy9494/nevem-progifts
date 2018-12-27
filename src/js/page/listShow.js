@@ -53,18 +53,45 @@ document.addEventListener('DOMContentLoaded', function () {
       })
     }
     sum(v){
-      if (!v.awards) return
+      if (!v.awards || !Array.isArray(v.awards)) return 0
+      var sum = 0
+      v.awards.forEach(k => {
+        if (!k || !k.childAwards || !Array.isArray(k.childAwards)) return
 
-      let one = v.awards[0] && v.awards[0].childAwards
-      let oneNum = one[0].count
+        if (k.name === '一等奖') {
+          for (let i = 0; i < k.childAwards.length; i++) {
+            if (i === 0 && k.childAwards[i]) {
+              sum += k.childAwards[i].count
+            }
+          }
+        }
 
-      let two = v.awards[1] && v.awards[1].childAwards
-      let twoNum = two[0].count + two[1].count
+        if (k.name === '二等奖' || k.name === '三等奖') {
+          for (let i = 0; i < k.childAwards.length; i++) {
+            if (i < 3 && k.childAwards[i]) {
+              sum += k.childAwards[i].count
+            }
+          }
+        }
+      })
 
-      let three = v.awards[2] && v.awards[2].childAwards
-      let threeNum = three[0].count + three[1].count
+      return sum
+    }
+    renderPrizeItem(v, isPicture){
+      if (!v || !Array.isArray(v)) return ''
+      var html = ''
 
-      return oneNum + twoNum + threeNum
+      v.forEach(k => {
+        html += `
+          <div class="showPrize-expected-item">
+            ${isPicture ? `<img src=${k.picture || ''} alt="img">` : ''}
+            <div class="showPrize-expected-item-name">${k.name || ''}</div>
+            <div class="showPrize-expected-item-num">总共：${k.count || 0}个</div>
+          </div>
+        `
+      })
+
+      return html
     }
     renderPrize(dom, v){
       let fragment = document.createDocumentFragment()
@@ -73,41 +100,17 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="showPrize-expected-content">
             <div class="showPrize-expected-prize1">
               ${
-                v && v.awards && v.awards[1] && v.awards[1].childAwards ? `
-                  <div class="showPrize-expected-item">
-                    <div class="showPrize-expected-item-name">${v.awards[1].childAwards[0] ? v.awards[1].childAwards[0].name : ''}</div>
-                    <div class="showPrize-expected-item-num">总共：${v.awards[1].childAwards[0] ? v.awards[1].childAwards[0].count : ''}个</div>
-                  </div>
-                  <div class="showPrize-expected-item">
-                    <div class="showPrize-expected-item-name">${v.awards[1].childAwards[1] ? v.awards[1].childAwards[1].name : ''}</div>
-                    <div class="showPrize-expected-item-num">总共：${v.awards[1].childAwards[1] ? v.awards[1].childAwards[1].count : ''}个</div>
-                  </div>
-                ` : ''
+                v && v.awards && v.awards[1] && v.awards[1].childAwards ? `${this.renderPrizeItem(v.awards[1].childAwards.slice(0, 3), false)}` : ''
               }
             </div>
             <div class="showPrize-expected-prize2">
-              <div class="showPrize-expected-item">
-                ${
-                  v && v.awards && v.awards[0] && v.awards[0].childAwards ? `
-                    <img src=${v.awards[0].childAwards[0] ? v.awards[0].childAwards[0].picture : ''} alt="img">
-                    <div class="showPrize-expected-item-name">${v.awards[0].childAwards[0] ? v.awards[0].childAwards[0].name : ''}</div>
-                    <div class="showPrize-expected-item-num">总共：${v.awards[0].childAwards[0] ? v.awards[0].childAwards[0].count : ''}个</div>
-                  ` : ''
-                }
-              </div>
+              ${
+                v && v.awards && v.awards[0] && v.awards[0].childAwards ? `${this.renderPrizeItem(v.awards[0].childAwards.slice(0, 2), true)}` : ''
+              }
             </div>
             <div class="showPrize-expected-prize3">
               ${
-                v && v.awards && v.awards[2] && v.awards[2].childAwards ? `
-                  <div class="showPrize-expected-item">
-                    <div class="showPrize-expected-item-name">${v.awards[2].childAwards[0] ? v.awards[2].childAwards[0].name : ''}</div>
-                    <div class="showPrize-expected-item-num">总共：${v.awards[2].childAwards[0] ? v.awards[2].childAwards[0].count : ''}个</div>
-                  </div>
-                  <div class="showPrize-expected-item">
-                    <div class="showPrize-expected-item-name">${v.awards[2].childAwards[1] ? v.awards[2].childAwards[1].name : ''}</div>
-                    <div class="showPrize-expected-item-num">总共：${v.awards[2].childAwards[1] ? v.awards[2].childAwards[1].count : ''}个</div>
-                  </div>
-                ` : ''
+                v && v.awards && v.awards[2] && v.awards[2].childAwards ? `${this.renderPrizeItem(v.awards[2].childAwards.slice(0, 3), false)}` : ''
               }
             </div>
           </div>
