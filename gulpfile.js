@@ -179,7 +179,7 @@ gulp.task('build:debug', ['sass:debug', 'vender', 'concatjs:debug', 'js:debug', 
 gulp.task('build', ['sass', 'vender', 'concatjs', 'js', 'assets', 'html'])
 
 // 服务器
-gulp.task('serve', ['build'], function() {
+gulp.task('serve', ['build:debug'], function() {
   setTimeout(function(){
     browserSync.init({
       server: {

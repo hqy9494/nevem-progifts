@@ -208,6 +208,56 @@
     }
   }
 
+  .listShow-model{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .7);
+    .listShow-model-content{
+      width: pxToVw(624);
+      height: pxToVw(927);
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: url("assets/img/listShowModel.png") center center no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #F5E4CD;
+      .listShow-model-title{
+        margin-top: pxToVw(60);
+        font-size: pxToVw(60);
+      }
+      .listShow-model-level{
+        font-size: pxToVw(60);
+      }
+      .listShow-model-prize{
+        font-size: pxToVw(36);
+      }
+      .listShow-model-info{
+        margin-top: pxToVw(10);
+        border: 2px solid #F9E4CA;
+        border-radius: pxToVw(100);
+        padding: pxToVw(10) pxToVw(50);
+        font-size: pxToVw(20);
+      }
+      .listShow-prize{
+        width: pxToVw(165);
+        height: pxToVw(217);
+        position: absolute;
+        left: 50%;
+        top: 54%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
   @keyframes toTop {
     from{
       top: 0;
