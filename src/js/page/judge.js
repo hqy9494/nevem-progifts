@@ -14,35 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     ready() {
-      this.state.$btn.on('tap', (e) => {
-        const token = this.params['token']
-
-        this.fetchMe(token).then(v => {
-          if (!v) return
-
-          if (!v.enabled) {
-            alert('用户已禁用')
-          }else{
-            if (!this.params['qrCode']) return
-
-            this.fetchQrCode(this.params).then(v => {
-              if (v) window.location.href = `./judgeStatus.html?status=success`
-            })
-          }
+      this.state.$btn.on('click', (e) => {
+        this.fetchQrCode(this.params).then(v => {
+          window.location.href = `./judgeStatus.html?status=${v && v.stat ? 'success' : 'error'}`
         })
-
-      })
-    }
-    fetchMe() {
-      return this.fetch({
-        url: `accounts/me`,
-        method: 'get'
       })
     }
     fetchQrCode(params) {
       return this.fetch({
-        url: `/Logins/qr/code`,
-        method: 'post',
+        url: `${this.baseUri}/wx/login/qrCode/token`,
+        method: 'get',
         params
       })
     }

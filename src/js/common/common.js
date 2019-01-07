@@ -1,7 +1,7 @@
 class parent {
   constructor(){
-    // this.baseUri = 'https://test.lkd.yooyuu.com.cn'
-    this.baseUri = 'https://lkd.yooyuu.com.cn'
+    this.baseUri = 'https://test.lkd.yooyuu.com.cn'
+    // this.baseUri = 'https://lkd.yooyuu.com.cn'
     this.baseUriApi = this.baseUri + '/api'
     this.windowUrl = window.location.href
     this.origin = window.location.origin
@@ -21,7 +21,7 @@ class parent {
   // 请求
   fetch(option){
     const token = this.params && this.params.token
-    var url = option.url + '?access_token=' + token;
+    var url = `${option.url}${token ? `?access_token=${token}` : ''}`;
     return new Promise((resolve, reject) => {
       $.ajax({
         type: option.method,
